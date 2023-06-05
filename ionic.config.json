@@ -1,0 +1,7 @@
+{
+  "name": "cole-notas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
