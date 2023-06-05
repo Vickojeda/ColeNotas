@@ -19,9 +19,10 @@
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+        <ion-button type="submit" color="danger" expand="block" #sign>Sign In</ion-button>
         <ion-button [routerLink]="['/register']" expand="block" color="primary"> Register</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a><br>
+        <a class="small-text">Help <ion-icon name="chatbubble-ellipses-outline" #help></ion-icon></a>
       </ion-col>
     </ion-row>
   </form>
