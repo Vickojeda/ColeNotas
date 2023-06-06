@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
 
 export class HomePage implements OnInit {
 
+  email:string;
   constructor(private router: Router) {
-    
-   }
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as {email: string};
+    this.email = state.email;
+  }
 
    ngOnInit() {
   }

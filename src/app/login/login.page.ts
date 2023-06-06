@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnimationController } from "@ionic/angular"
+import { FormGroup, FormBuilder, FormControl } from "@angular/forms"
 
 @Component({
   selector: 'app-login',
@@ -7,14 +9,25 @@ import { AnimationController } from "@ionic/angular"
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  formData:FormGroup;
 
-  @ViewChild("sign", { read: ElementRef, static: true }) sign: ElementRef
+  @ViewChild("sign", { read: ElementRef, static: true }) sign: ElementRef;
   @ViewChild('help', { read: ElementRef }) help: ElementRef;
 
-  constructor(private animationCtrl: AnimationController) {}
+  constructor(private animationCtrl: AnimationController, 
+    private router:Router, 
+    public formBuilder: FormBuilder) {
+   
+  }
 
-   ngAfterViewInit() {
+  ngAfterViewInit() {
     this.pulseButton()
+  }
+
+  login() {
+    let email = this.formData.value.email
+    console.log(email)
+    this.router.navigate(['./home'], { state: { email } })
   }
 
   public pulseButton() {
@@ -29,7 +42,6 @@ export class LoginPage implements OnInit {
         { offset: 1, boxShadow: "0 0 0 0 rgba(44, 103, 255, 0)" }
       ]);
 
-
     const loadingAnimation = this.animationCtrl.create()
       .addElement(this.help.nativeElement)
       .duration(1500)
@@ -41,6 +53,10 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.formData = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    })
   }
 
 }

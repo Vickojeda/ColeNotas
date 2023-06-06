@@ -8,18 +8,18 @@
 </ion-header>
 <ion-content>
   
-  <form>
+  <form [formGroup]="formData" (ngSubmit)="login()" novalidate>
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="email" formControlName="email" #email required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" formControlName="password" required #password></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block" #sign>Sign In</ion-button>
+        <ion-button type="submit" color="danger" expand="block"  #sign>Sign In</ion-button>
         <ion-button [routerLink]="['/register']" expand="block" color="primary"> Register</ion-button>
         <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a><br>
         <a class="small-text">Help <ion-icon name="chatbubble-ellipses-outline" #help></ion-icon></a>
