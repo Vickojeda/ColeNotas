@@ -26,7 +26,6 @@ export class LoginPage implements OnInit {
 
   login() {
     let email = this.formData.value.email
-    console.log(email)
     this.router.navigate(['./home'], { state: { email } })
   }
 
