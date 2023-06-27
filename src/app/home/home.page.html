@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Home
+      Libro Clases
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,6 +11,34 @@
       <ion-col align-self-center>
         <span class="already"> Bienvenido {{ email }}</span>
       </ion-col>
+    </ion-row>
+    <ion-row>    
+      <ion-col >
+        <ion-list>
+          <ion-item>
+            <ion-select aria-label="Fruit" placeholder="Selecciona curso" [multiple]="true">
+              <ion-select-option value="">Primero</ion-select-option>
+              <ion-select-option value="">Segundo</ion-select-option>
+              <ion-select-option value="">Tercero</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+            <ion-col >
+    <ion-list>
+    </ion-list>
+  </ion-col>
+    <ion-list>
+      <ion-item>
+        <ion-select aria-label="Fruit" placeholder="Asignatura" [multiple]="true">
+                    <ion-select-option value="Lenguaje">Lenguaje</ion-select-option>
+          <ion-select-option value="Matemática">Matemática</ion-select-option>
+          <ion-select-option value="Historia">Historia</ion-select-option>
+          <ion-select-option value="Ciencias">Ciencias</ion-select-option>
+          <ion-select-option value="Música">Música</ion-select-option>
+          <ion-select-option value="Artes">Artes</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
     </ion-row>
   </ion-grid>
 </ion-content>
