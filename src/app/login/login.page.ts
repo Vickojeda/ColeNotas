@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationController } from "@ionic/angular"
 import { FormGroup, FormBuilder, FormControl } from "@angular/forms"
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ export class LoginPage implements OnInit {
 
   constructor(private animationCtrl: AnimationController, 
     private router:Router, 
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder,
+    private db: DatabaseService,
+    ) {
    
   }
 
@@ -26,7 +29,15 @@ export class LoginPage implements OnInit {
 
   login() {
     let email = this.formData.value.email
-    this.router.navigate(['./home'], { state: { email } })
+    let password = this.formData.value.password
+    console.log("PRobando")
+    this.db.getProfesorByCorreo(email).then(res => {
+      console.log(res)
+    }).catch(e => {
+      console.log('error')
+    })
+
+    //this.router.navigate(['./home'], { state: { email } })
   }
 
   public pulseButton() {
