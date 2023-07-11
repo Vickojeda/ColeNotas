@@ -1,50 +1,56 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar [class]="tableHeader">
     <ion-title>
       Libro Clases
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="auth-form">
-  <ion-grid>
-    <ion-row>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-row>
       <ion-col align-self-center>
-        <span class="already"> Bienvenido {{ email }}</span>
+          <span class="ion-text-bold"> Bienvenido {{ email }}</span>
       </ion-col>
+  </ion-row>
+
+  <ion-list-header>
+      <ion-label class="ion-text-bold">Cursos</ion-label>
+    </ion-list-header>
+    <ion-item >
+      <ion-select name="miselect" (ionChange)="changeTablaPorCurso($event)" value="ion-border" >
+          <ion-select-option *ngFor="let curso of cursos; let i = index" value="{{ curso?.id }}">{{ curso?.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list-header>
+      <ion-label class="ion-text-bold">Asignaturas</ion-label>
+    </ion-list-header>
+    <ion-item >
+      <ion-select (ionChange)="changeTablaPorAsignatura($event)" value="ion-border" >
+        <ion-select-option *ngFor="let asignatura of asignaturas" value="{{ asignatura?.id }}">{{ asignatura?.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  <ion-grid [class]="tableTheme">
+    <ion-row [class]="tableHeader">
+      <ion-col class="ion-text-bold"> Nombre Alumno </ion-col>
+      <ion-col class="ion-text-bold"> Nota 1 </ion-col>
+      <ion-col class="ion-text-bold"> Nota 1 </ion-col>
+      <ion-col class="ion-text-bold"> Nota 2 </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col align-self-center>
-        <span class="already"> Tu ubicación es {{ ubicacion }}</span>
+
+    <ion-row *ngFor="let alumno of alumnos">
+      <ion-col>{{ alumno?.name }}</ion-col>
+      <ion-col *ngFor="let nota of alumno.notas">
+          {{ nota?.nota }}
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-item>
-            <ion-select aria-label="Fruit" placeholder="Selecciona curso" [multiple]="true">
-              <ion-select-option value="">Primero</ion-select-option>
-              <ion-select-option value="">Segundo</ion-select-option>
-              <ion-select-option value="">Tercero</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col>
-          <ion-list>
-          </ion-list>
-        </ion-col>
-        <ion-list>
-          <ion-item>
-            <ion-select aria-label="Fruit" placeholder="Asignatura" [multiple]="true">
-              <ion-select-option value="Lenguaje">Lenguaje</ion-select-option>
-              <ion-select-option value="Matemática">Matemática</ion-select-option>
-              <ion-select-option value="Historia">Historia</ion-select-option>
-              <ion-select-option value="Ciencias">Ciencias</ion-select-option>
-              <ion-select-option value="Música">Música</ion-select-option>
-              <ion-select-option value="Artes">Artes</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
     </ion-row>
   </ion-grid>
+
 </ion-content>

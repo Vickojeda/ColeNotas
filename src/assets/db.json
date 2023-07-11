@@ -1,0 +1,111 @@
+{
+    "database": "cole-notas",
+    "version": 1,
+    "encrypted": false,
+    "mode": "full",
+    "tables": [
+        {
+            "name": "profesor",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "correo", "value": "TEXT PRIMARY KEY"},
+                { "column": "nombre", "value": "TEXT"},
+                { "column": "apellido", "value": "TEXT"},
+                { "column": "direccion", "value": "TEXT"},
+                { "column": "pass", "value": "TEXT"}
+            ],
+            "values": [
+                [1, "profesor@test.cl", "Victoria", "Ojeda", "congui", "profesor"],
+                [2, "profesor2@test.cl", "Victoria", "Ojeda", "congui", "profesor"],
+            ]
+        },
+        {
+            "name": "curso",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "nombre", "value": "TEXT PRIMARY KEY"},
+                { "column": "id_profesor", "value": "INTEGER"}
+            ],
+            "values": [
+                [1, "kinder", 1],
+                [2, "primero", 2]
+            ]
+        },
+        {
+            "name": "alumno",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "rut", "value": "TEXT PRIMARY KEY"},
+                { "column": "nombre", "value": "TEXT"},
+                { "column": "edad", "value": "TEXT"}
+            ],
+            "values": [
+                [1, "11.121.112-3", "Juan Pinto", "12"],
+                [2, "9.121.112-3", "Juana Pintos", "12"]
+            ]
+        },
+        {
+            "name": "alumno_curso",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "id_alumno", "value": "INTEGER"},
+                { "column": "id_curso", "value": "INTEGER"}
+            ],
+            "values": [
+                [1, 1, 1],
+                [2, 2, 2]
+            ]
+        },
+        {
+            "name": "asignatura",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "descripcion", "value": "TEXT"},
+                { "column": "id_profesor", "value": "INTEGER"}
+            ],
+            "values": [
+                [1, "Ingles", 1],
+                [2, "Matematicas", 2]
+            ]
+        },
+        {
+            "name": "curso_asignatura",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "id_asignatura", "value": "TEXT PRIMARY KEY"},
+                { "column": "id_curso", "value": "TEXT"}
+            ],
+            "values": [
+                [1, "Ingles", 1],
+                [2, "Matematicas", 2]
+            ]
+        },
+        {
+            "name": "evaluacion",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "descripcion", "value": "TEXT PRIMARY KEY"},
+                { "column": "id_profesor", "value": "TEXT"},
+                { "column": "id_asignatura", "value": "TEXT"}
+            ],
+            "values": [
+                [1, "Unidad 1", 1, 1],
+                [2, "Suma", 2, 2]
+            ]
+        },
+        {
+            "name": "nota",
+            "schema": [
+                { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT"},
+                { "column": "nota", "value": "TEXT PRIMARY KEY"},
+                { "column": "id_curso", "value": "TEXT"},
+                { "column": "id_evaluacion", "value": "TEXT"},
+                { "column": "id_alumno", "value": "TEXT"}
+            ],
+            "values": [
+                [1, 5.0, 1, 1, 1],
+                [2, 6.0, 2, 2, 2]
+            ]
+        }
+    ]
+}

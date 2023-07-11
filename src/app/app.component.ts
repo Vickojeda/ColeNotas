@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoadingController, Platform } from '@ionic/angular';
-import { DatabaseService } from './services/database.service';
+//import { DatabaseService } from './services/database.service';
+import { DbService } from '../services/db.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { DatabaseService } from './services/database.service';
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private databaseService: DatabaseService,
+    private databaseService: DbService,
     private loadingCtrl: LoadingController
   ) {
     this.initializeApp();
@@ -18,14 +19,14 @@ export class AppComponent {
 
   async initializeApp() {
     this.platform.ready().then(async () => {
-      const loading = await this.loadingCtrl.create();
-      await loading.present();
+      //const loading = await this.loadingCtrl.create();
+      //await loading.present();
       this.databaseService.init();
-      this.databaseService.dbReady.subscribe(isReady => {
-        if (isReady) {
-          loading.dismiss();
-        }
-      });
+      //this.databaseService.dbReady.subscribe(isReady => {
+      //  if (isReady) {
+      //    loading.dismiss();
+      //  }
+      //});
     });
   }
 }

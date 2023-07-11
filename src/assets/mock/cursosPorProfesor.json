@@ -1,0 +1,12 @@
+[
+    {
+      "id": 1,
+      "nombre": "Primero Basico",
+      "id_profesor": 1
+    },
+    {
+        "id": 2,
+        "nombre": "Segundo Basico",
+        "id_profesor": 2
+    }
+]

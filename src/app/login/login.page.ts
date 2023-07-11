@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationController } from "@ionic/angular"
-import { FormGroup, FormBuilder, FormControl } from "@angular/forms"
-import { DatabaseService } from '../services/database.service';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms"
+import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,10 @@ import { DatabaseService } from '../services/database.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  formData:FormGroup;
+  submitted = false;
+  loginForm: FormGroup;
+  authError = false;
+  authErrorMsg: string;
 
   @ViewChild("sign", { read: ElementRef, static: true }) sign: ElementRef;
   @ViewChild('help', { read: ElementRef }) help: ElementRef;
@@ -18,26 +21,35 @@ export class LoginPage implements OnInit {
   constructor(private animationCtrl: AnimationController, 
     private router:Router, 
     public formBuilder: FormBuilder,
-    private db: DatabaseService,
+    private db: DbService,
     ) {
-   
+   this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   ngAfterViewInit() {
     this.pulseButton()
   }
 
-  login() {
-    let email = this.formData.value.email
-    let password = this.formData.value.password
-    console.log("PRobando")
-    this.db.getProfesorByCorreo(email).then(res => {
-      console.log(res)
-    }).catch(e => {
-      console.log('error')
+  onSubmit(loginData: any) {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+    
+    this.db.getProfesorByEmailAndNombre(loginData.email, loginData.password).subscribe(data => {
+      if(data) {
+        this.router.navigate(['./home'], { state: { email: loginData.email, password: loginData.password } })
+      }
+      else {
+        this.authError = true;
+        this.authErrorMsg = "reason";
+      }
     })
 
-    //this.router.navigate(['./home'], { state: { email } })
   }
 
   public pulseButton() {
@@ -52,21 +64,13 @@ export class LoginPage implements OnInit {
         { offset: 1, boxShadow: "0 0 0 0 rgba(44, 103, 255, 0)" }
       ]);
 
-    const loadingAnimation = this.animationCtrl.create()
-      .addElement(this.help.nativeElement)
-      .duration(1500)
-      .iterations(Infinity)
-      .fromTo('opacity', '1', '0.1');
-
-    loadingAnimation.play();
     animation.play();
   }
 
-  ngOnInit() {
-    this.formData = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
-    })
+  ngOnInit() {}
+
+  get f() {
+    return this.loginForm.controls;
   }
 
 }

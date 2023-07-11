@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
-
-
-  //apiURL = 'HTTPS://jsonplaceholder.typicode.com';//
-  //apiURL = 'HTTPS://192.168.0.6:3000';
 
   constructor(private http: HttpClient) { }
 

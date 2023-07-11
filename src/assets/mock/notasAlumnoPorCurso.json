@@ -1,0 +1,44 @@
+[
+    {
+      "name": "Victoria Ojeda",
+      "gender": "femenino",
+      "notas": [
+        {
+              "id": 1,
+              "nota": 6.5,
+              "id_evaluacion": 1
+        },
+        {
+            "id": 2,
+            "nota": 6.0,
+            "id_evaluacion": 2
+        },
+        {
+            "id": 3,
+            "nota": 6.2,
+            "id_evaluacion": 3
+        }
+      ]
+    },
+    {
+        "name": "Juan Pinto",
+        "gender": "masculino",
+        "notas": [
+          {
+                "id": 1,
+                "nota": 6.2,
+                "id_evaluacion": 1
+          },
+          {
+              "id": 2,
+              "nota": 6.3,
+              "id_evaluacion": 2
+          },
+          {
+              "id": 3,
+              "nota": 3.2,
+              "id_evaluacion": 3
+          }
+        ]
+      }
+]
